@@ -1,5 +1,7 @@
 import java.util.Arrays;
 
+import com.amazon.package1.Cart;
+
 class Box {
     int id;
     String name;
@@ -22,10 +24,10 @@ class Box {
         System.out.println("Id is: " + id + " Name is: " + name);
     }
 
-    @Override
-    protected void finalize() throws Throwable {
-        System.out.println(this.id + " Object is getting destroyed");
-    }
+//    @Override
+//    protected void finalize() throws Throwable {
+//        System.out.println(this.id + " Object is getting destroyed");
+//    }
 }
 
 public class Main {
@@ -48,7 +50,16 @@ public class Main {
 //        for(int i = 0; i < 100000000; i++) {
 //            curr = new Box(i, "Kumar");
 //        }
-        Box obj = new Box();
-        obj.printAsString();
+//        Box obj = new Box();
+//        obj.printAsString();
+        System.out.println("Cart items are: " + Cart.items);
+        Cart obj1 = new Cart();
+        System.out.println("Cart items are: " + Cart.items);
+        Cart obj2 = new Cart();
+        System.out.println("Cart items are: " + Cart.items);
+        Cart obj3 = new Cart();
+        System.out.println("Cart items are: " + Cart.items);
+        Cart obj4 = new Cart();
+        System.out.println("Cart items are: " + Cart.items);
     }
 }
