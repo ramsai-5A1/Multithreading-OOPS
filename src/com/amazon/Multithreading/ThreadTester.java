@@ -14,20 +14,32 @@ public class ThreadTester {
 //        }, "thread-4");
 //        thread4.start();
 
-        Stack stack = new Stack(3);
+//        Stack stack = new Stack(3);
+//
+//        new Thread(() -> {
+//            for(int i = 0; i < 10; i++) {
+//                System.out.println(Thread.currentThread().getName() + " " + stack.push(i));
+//            }
+//        }, "Pusher").start();
+//
+//        new Thread(() -> {
+//            for(int i = 0; i < 10; i++) {
+//                System.out.println(Thread.currentThread().getName() + " " + stack.pop());
+//            }
+//        }, "Popper").start();
+
+        BlockingQueue queue = new BlockingQueue(4);
+        new Thread(() -> {
+            for(int i = 0; i < 10; i++) {
+                System.out.println(queue.add(i));
+            }
+        }, "Enqeue").start();
 
         new Thread(() -> {
             for(int i = 0; i < 10; i++) {
-                System.out.println(Thread.currentThread().getName() + " " + stack.push(i));
+                System.out.println(queue.remove());
             }
-        }, "Pusher").start();
-
-        new Thread(() -> {
-            for(int i = 0; i < 10; i++) {
-                System.out.println(Thread.currentThread().getName() + " " + stack.pop());
-            }
-        }, "Popper").start();
-
+        }, "Dequeue").start();
         System.out.println("Main is Exiting");
     }
 }
