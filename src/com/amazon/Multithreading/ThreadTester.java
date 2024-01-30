@@ -41,21 +41,44 @@ public class ThreadTester {
 //            }
 //        }, "Dequeue").start();
 
-        Thread thread4 = new Thread(() -> {
-            try {
-                Thread.sleep(1);
-                for(int i = 0; i < 1000; i++);
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
-        }, "States");
-        thread4.start();
+//        Thread thread4 = new Thread(() -> {
+//            try {
+//                Thread.sleep(1);
+//                for(int i = 0; i < 1000; i++);
+//            } catch (InterruptedException e) {
+//                throw new RuntimeException(e);
+//            }
+//        }, "States");
+//        thread4.start();
+//
+//        while(true) {
+//            Thread.State state = thread4.getState();
+//            System.out.println(state);
+//            if (state == Thread.State.TERMINATED)   break;
+//        }
+        String lock1 = "lock1";
+        String lock2 = "lock2";
 
-        while(true) {
-            Thread.State state = thread4.getState();
-            System.out.println(state);
-            if (state == Thread.State.TERMINATED)   break;
-        }
+        Thread thread1 = new Thread(() -> {
+            synchronized (lock1) {
+                System.out.println("[out] lock acquired for " + Thread.currentThread().getName());
+                synchronized (lock2) {
+                    System.out.println("[in] Lock acquired for " + Thread.currentThread().getName());
+                }
+            }
+        }, "thread-1");
+
+        Thread thread2 = new Thread(() -> {
+            synchronized (lock2) {
+                System.out.println("[out] lock acquired for " + Thread.currentThread().getName());
+                synchronized (lock1) {
+                    System.out.println("[in] Lock acquired for " + Thread.currentThread().getName());
+                }
+            }
+        }, "thead-2");
+
+        thread1.start();
+        thread2.start();
         System.out.println("Main is Exiting");
     }
 }
