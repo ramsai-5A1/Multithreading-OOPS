@@ -28,18 +28,34 @@ public class ThreadTester {
 //            }
 //        }, "Popper").start();
 
-        BlockingQueue queue = new BlockingQueue(4);
-        new Thread(() -> {
-            for(int i = 0; i < 10; i++) {
-                System.out.println(queue.add(i));
-            }
-        }, "Enqeue").start();
+//        BlockingQueue queue = new BlockingQueue(4);
+//        new Thread(() -> {
+//            for(int i = 0; i < 10; i++) {
+//                System.out.println(queue.add(i));
+//            }
+//        }, "Enqeue").start();
+//
+//        new Thread(() -> {
+//            for(int i = 0; i < 10; i++) {
+//                System.out.println(queue.remove());
+//            }
+//        }, "Dequeue").start();
 
-        new Thread(() -> {
-            for(int i = 0; i < 10; i++) {
-                System.out.println(queue.remove());
+        Thread thread4 = new Thread(() -> {
+            try {
+                Thread.sleep(1);
+                for(int i = 0; i < 1000; i++);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
             }
-        }, "Dequeue").start();
+        }, "States");
+        thread4.start();
+
+        while(true) {
+            Thread.State state = thread4.getState();
+            System.out.println(state);
+            if (state == Thread.State.TERMINATED)   break;
+        }
         System.out.println("Main is Exiting");
     }
 }
