@@ -10,5 +10,20 @@ public class Main {
 
         child2.partner("Not fine");
         child2.career("Engineer");
+
+        Parent parent = new Parent() {
+            @Override
+            public void career(String profession) {
+                System.out.println("[Parent] career is " + profession);
+            }
+
+            @Override
+            public void partner(String isOk) {
+                System.out.println("[parent] He is: " + isOk);
+            }
+        };
+
+        parent.career("Astrouout");
+        parent.partner("Interested");
     }
 }
