@@ -14,4 +14,10 @@ public class Child1 extends Parent {
     public void partner(String isOk) {
         System.out.println("[Child1] She is: " + isOk);
     }
+
+    @Override
+    public void normalFunction() {
+        super.normalFunction();
+        System.out.println("[Chiild1] Normal function");
+    }
 }
