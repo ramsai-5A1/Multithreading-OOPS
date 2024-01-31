@@ -1,6 +1,6 @@
 package com.amazon.generics;
 
-public class Student implements Comparable<Student> {
+public class Student  {
     int rollNo;
     int marks;
 
@@ -9,8 +9,13 @@ public class Student implements Comparable<Student> {
         this.marks = marks;
     }
 
+//    @Override
+//    public int compareTo(Student o) {
+//        return this.marks - o.marks;
+//    }
+
     @Override
-    public int compareTo(Student o) {
-        return this.marks - o.marks;
+    public String toString() {
+        return "[" + this.marks + ", " + this.rollNo + "]";
     }
 }
