@@ -15,12 +15,7 @@ public class Main {
         System.out.println(Arrays.toString(list));
 
         //Arrays.sort(list);
-        Arrays.sort(list, new Comparator<Student>() {
-            @Override
-            public int compare(Student o1, Student o2) {
-                return o1.marks - o2.marks;
-            }
-        });
+        Arrays.sort(list, (o1, o2) -> -(o1.marks - o2.marks));
         System.out.println(Arrays.toString(list));
     }
 }
