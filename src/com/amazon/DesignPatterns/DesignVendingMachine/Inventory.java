@@ -8,6 +8,7 @@ public class Inventory {
     }
     public Inventory(int size) {
         this.inventory = new ItemShelf[size];
+        this.initialEmptyInventory();
     }
 
     public void setInventory(ItemShelf[] inventory) {

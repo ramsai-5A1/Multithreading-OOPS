@@ -4,6 +4,15 @@ public class Item {
     private ItemType item;
     private int price;
 
+    public Item() {
+
+    }
+
+    public Item(ItemType item, int price) {
+        this.item = item;
+        this.price = price;
+    }
+
     public ItemType getItem() {
         return this.item;
     }

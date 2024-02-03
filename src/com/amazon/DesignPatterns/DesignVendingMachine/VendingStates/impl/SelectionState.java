@@ -13,17 +13,17 @@ public class SelectionState implements State {
     }
     @Override
     public void clickOnInsertCoinButton(VendingMachine machine) throws Exception {
-
+        throw new Exception("Invalid operation in Selection state");
     }
 
     @Override
     public void clickOnStartProductSelectionButton(VendingMachine machine) throws Exception {
-
+        throw new Exception("Invalid operation in Selection state");
     }
 
     @Override
     public void insertCoin(VendingMachine machine, Coin coin) throws Exception {
-
+        throw new Exception("Invalid operation in Selection state");
     }
 
     @Override
@@ -42,26 +42,30 @@ public class SelectionState implements State {
             if (paidByUser > item.getPrice()) {
                 getChange(paidByUser - item.getPrice());
             }
+            machine.setVendingMachineState(new DispenseState(machine, codeNumber));
         }
     }
 
     @Override
     public int getChange(int returnChangeMoney) throws Exception {
-        return 0;
+        System.out.println("Change returned successfully of " + returnChangeMoney);
+        return returnChangeMoney;
     }
 
     @Override
     public Item dispenseProduct(VendingMachine machine, int codeNumber) throws Exception {
-        return null;
+        throw new Exception("Invalid operation in Selection state");
     }
 
     @Override
     public List<Coin> refundFullMoney(VendingMachine machine) throws Exception {
-        return null;
+        System.out.println("Returned back the full-refund");
+        machine.setVendingMachineState(new IdleState(machine));
+        return machine.getCoinsList();
     }
 
     @Override
     public void updateInventory(VendingMachine machine, Item item, int codeNumber) throws Exception {
-
+        throw new Exception("Invalid operation in Selection state");
     }
 }
